@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 let startTimer = null;
+
 const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
@@ -21,7 +22,7 @@ const options = {
     if (selectedDates[0] < options.defaultDate.getTime()) {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
-      startTimer = selectedDates[0] - options.defaultDate.getTime();
+      startTimer = selectedDates[0].getTime() - options.defaultDate.getTime();
       btnEl.disabled = false;
     }
   },
@@ -76,9 +77,3 @@ function timerCounting(event) {
     }
   }, 1000);
 }
-// function pad(value) {
-//   return String(value).padStart(2, '0');
-// }
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
